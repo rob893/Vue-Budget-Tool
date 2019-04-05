@@ -43,8 +43,8 @@
 
             <FdAppMain>
                 <FdTabs v-model="activeTab">
-                    <FdTabItem striped label="Budget Tool" name="a">
-                        <br>
+                    <FdTabItem striped label="Budget Tool" name="a" class="content">
+                        
                         <div v-if="budget.getMonthlyExpenses().length > 0">
                             <h2>Monthly Expenses</h2>
                             <FdTable striped :headers="budgetHeaders" :items="budget.getMonthlyExpenses()">
@@ -105,7 +105,7 @@
                         </FdModal>
                     </FdTabItem>
 
-                    <FdTabItem label="Demo" name="b">
+                    <FdTabItem label="Demo" name="b" class="content">
                         <FdPopover v-margin:large>
                             <h1 v-margin:large slot="body">🚀 Hello Fundamental Vue 🚀</h1>
                         </FdPopover>
@@ -241,3 +241,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.content {
+    padding: 10px 10px 10px 10px;
+}
+</style>
+
