@@ -1,0 +1,23 @@
+{
+    "Annual": [
+        {
+            "name": "Amazon Prime",
+            "expense": 120
+        },
+        {
+            "name": "Microsoft Office 365",
+            "expense": 70
+        }
+    ],
+
+    "Monthly": [
+        {
+            "name": "Rent",
+            "expense": 1335
+        },
+        {
+            "name": "Phone",
+            "expense": 116
+        }
+    ]
+}
