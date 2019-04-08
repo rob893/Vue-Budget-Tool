@@ -56,8 +56,10 @@
                                     </FdTableRow>
                                 </template>
                             </FdTable>
+                            <h2>Total Monthly Per Month: ${{ budget.getMonthlySum() }}</h2>
                         </div>
 
+                        <hr>
                         <br>
 
                         <div v-if="budget.getAnnualExpenses().length > 0">
@@ -71,14 +73,15 @@
                                     </FdTableRow>
                                 </template>
                             </FdTable>
+                            <h2>Total Annual Per Year: ${{ budget.getAnnualSum() }}</h2>
                         </div>
 
                         <hr>
 
-                        <h2>Total Annual Per Year: ${{ budget.getAnnualSum() }}</h2>
-                        <h2>Total Monthly Per Month: ${{ budget.getMonthlySum() }}</h2>
+                        <br>
                         <h2>Total Yearly Expenses: ${{ budget.getTotalAll() }}</h2>
-
+                        <br>
+                        
                         <hr>
 
                         <FdButton @click.stop="openAddExpense">Add Expense</FdButton>
