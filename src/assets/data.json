@@ -90,6 +90,10 @@
         {
             "name": "Health Insurance",
             "expense": 158
+        },
+        {
+            "name": "Groceries",
+            "expense": 500
         }
     ]
 }
