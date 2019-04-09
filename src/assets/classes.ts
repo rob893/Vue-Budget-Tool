@@ -1,75 +1,75 @@
-import jsonData from './data.json';
+import jsonData from "./data.json";
 
 
 export class Budget {
 
-    constructor(){
+    constructor() {
         this.data = jsonData;
         this.monthlyExpenses = this.data.Monthly;
         this.annualExpenses = this.data.Annual;
     }
 
-    addAnnualExpense(expense) {
+    public addAnnualExpense(expense) {
         this.annualExpenses.push(expense);
     }
 
-    removeAnnualExpense(expense) {
-        for(let i = 0; i < this.annualExpenses.length; i++) {
-            if(this.annualExpenses[i].name == expense.name) {
+    public removeAnnualExpense(expense) {
+        for (let i = 0; i < this.annualExpenses.length; i++) {
+            if (this.annualExpenses[i].name === expense.name) {
                 this.annualExpenses.splice(i, 1);
             }
         }
     }
 
-    addMonthlyExpense(expense) {
+    public addMonthlyExpense(expense) {
         this.monthlyExpenses.push(expense);
     }
 
-    removeMonthlyExpense(expense) {
-        for(let i = 0; i < this.monthlyExpenses.length; i++) {
-            if(this.monthlyExpenses[i].name == expense.name) {
+    public removeMonthlyExpense(expense) {
+        for (let i = 0; i < this.monthlyExpenses.length; i++) {
+            if (this.monthlyExpenses[i].name === expense.name) {
                 this.monthlyExpenses.splice(i, 1);
             }
         }
     }
 
-    getAnnualExpenses() {
+    public getAnnualExpenses() {
         return this.annualExpenses;
     }
 
-    getMonthlyExpenses() {
+    public getMonthlyExpenses() {
         return this.monthlyExpenses;
     }
 
-    getMonthlySum() {
+    public getMonthlySum() {
         let sum = 0;
 
-        for(let i = 0; i < this.monthlyExpenses.length; i++) {
+        for (let i = 0; i < this.monthlyExpenses.length; i++) {
             sum += this.monthlyExpenses[i].expense;
         }
 
         return sum;
     }
 
-    getAnnualSum() {
+    public getAnnualSum() {
         let sum = 0;
 
-        for(let i = 0; i < this.annualExpenses.length; i++) {
+        for (let i = 0; i < this.annualExpenses.length; i++) {
             sum += this.annualExpenses[i].expense;
         }
 
         return sum;
     }
 
-    getTotalAll() {
+    public getTotalAll() {
         return this.getAnnualSum() + (this.getMonthlySum() * 12);
     }
 
-    getRemainingBudget() {
+    public getRemainingBudget() {
         return 147000 - this.getTotalAll();
     }
 
-    getRemainingMonthlyBudget() {
+    public getRemainingMonthlyBudget() {
         return (this.getRemainingBudget() / 12).toFixed(2);
     }
 }

@@ -108,18 +108,18 @@
 <script lang='ts'>
 import Vue from "vue";
 
-import { Budget, Expense } from './assets/classes';
+import { Budget, Expense } from "./assets/classes";
 
 
 export default Vue.extend({
-    name: 'app',
+    name: "app",
 
-    data () {
+    data() {
         return {
             budgetHeaders: [
                 { label: "Name", sortable: true, sortBy: "name"},
                 { label: "Expense", sortable: true, sortBy: "expense"},
-                { label: "Delete"}
+                { label: "Delete"},
             ],
             budget: new Budget(),
             activeTab: "a",
@@ -129,8 +129,8 @@ export default Vue.extend({
             newCost: null,
             nameState: null,
             costState: null,
-            typeState: null
-        }
+            typeState: null,
+        };
     },
 
     methods: {
@@ -153,36 +153,35 @@ export default Vue.extend({
             this.costState = null;
             this.typeState = null;
 
-            if(this.newName === null) {
+            if (this.newName === null) {
                 this.nameState = "invalid";
                 return;
             }
 
-            if(this.newCost === null) {
+            if (this.newCost === null) {
                 this.costState = "invalid";
                 return;
             }
 
-            if(this.selectType === null) {
+            if (this.selectType === null) {
                 this.typeState = "invalid";
                 return;
             }
 
-            let newExpense = new Expense(this.newName, this.newCost);
+            const newExpense = new Expense(this.newName, this.newCost);
 
-            if(this.selectType == "Annual") {
+            if (this.selectType == "Annual") {
                 this.budget.addAnnualExpense(newExpense);
-            }
-            else {
+            } else {
                 this.budget.addMonthlyExpense(newExpense);
             }
 
-            this.closeAddExpense()
-        }
+            this.closeAddExpense();
+        },
     },
 
     mounted() {
-    }
+    },
 });
 </script>
 
