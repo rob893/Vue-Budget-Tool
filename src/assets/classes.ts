@@ -76,8 +76,11 @@ export class Budget {
 
 export class Expense {
 
-    constructor(name, expense) {
+    public name: string;
+    public expense: number;
+
+    constructor(name: string, expense: number) {
         this.name = name;
-        this.expense = Number(expense);
+        this.expense = expense;
     }
 }

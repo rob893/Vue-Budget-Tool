@@ -105,11 +105,13 @@
     </div>
 </template>
 
-<script>
-import { Budget, Expense } from './assets/classes.js';
+<script lang='ts'>
+import Vue from "vue";
+
+import { Budget, Expense } from './assets/classes';
 
 
-export default {
+export default Vue.extend({
     name: 'app',
 
     data () {
@@ -181,7 +183,7 @@ export default {
 
     mounted() {
     }
-}
+});
 </script>
 
 <style>
