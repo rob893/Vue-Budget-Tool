@@ -108,7 +108,8 @@
 <script lang='ts'>
 import Vue from "vue";
 
-import { Budget, Expense } from "./assets/classes";
+import { Budget } from "./assets/Budget";
+import { Expense } from "./assets/Expense";
 
 
 export default Vue.extend({
@@ -134,11 +135,11 @@ export default Vue.extend({
     },
 
     methods: {
-        openAddExpense() {
+        openAddExpense(): void {
             this.showAddExpense = true;
         },
 
-        closeAddExpense() {
+        closeAddExpense(): void {
             this.nameState = null;
             this.costState = null;
             this.typeState = null;
@@ -148,7 +149,7 @@ export default Vue.extend({
             this.showAddExpense = false;
         },
 
-        addExpense() {
+        addExpense(): void {
             this.nameState = null;
             this.costState = null;
             this.typeState = null;
@@ -170,7 +171,7 @@ export default Vue.extend({
 
             const newExpense = new Expense(this.newName, this.newCost);
 
-            if (this.selectType == "Annual") {
+            if (this.selectType === "Annual") {
                 this.budget.addAnnualExpense(newExpense);
             } else {
                 this.budget.addMonthlyExpense(newExpense);
@@ -178,10 +179,7 @@ export default Vue.extend({
 
             this.closeAddExpense();
         },
-    },
-
-    mounted() {
-    },
+    }
 });
 </script>
 
