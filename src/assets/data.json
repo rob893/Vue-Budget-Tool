@@ -17,12 +17,16 @@
             "expense": 200
         },
         {
-            "name": "Federal Taxes",
-            "expense": 29735
+            "name": "Federal Taxes (after 401k)",
+            "expense": 26811
         },
         {
-            "name": "AZ Taxes",
-            "expense": 4521
+            "name": "AZ Taxes (after 401k)",
+            "expense": 3957
+        },
+        {
+            "name": "401k Contributions",
+            "expense": 10290
         }
     ],
 

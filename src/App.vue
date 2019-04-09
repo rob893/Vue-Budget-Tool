@@ -44,7 +44,7 @@
                                     </FdTableRow>
                                 </template>
                             </FdTable>
-                            <h2>Total Monthly Per Month: ${{ budget.getMonthlySum() }}</h2>
+                            <h2>Total Monthly Per Month: ${{ budget.getMonthlySum() }} (${{ budget.getMonthlySum() * 12 }} per year)</h2>
                         </div>
 
                         <hr>
@@ -61,7 +61,7 @@
                                     </FdTableRow>
                                 </template>
                             </FdTable>
-                            <h2>Total Annual Per Year: ${{ budget.getAnnualSum() }}</h2>
+                            <h2>Total Annual Per Year: ${{ budget.getAnnualSum() }} (${{ (budget.getAnnualSum() / 12).toFixed(2) }} per month)</h2>
                         </div>
 
                         <hr>

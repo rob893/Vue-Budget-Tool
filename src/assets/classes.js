@@ -70,7 +70,7 @@ export class Budget {
     }
 
     getRemainingMonthlyBudget() {
-        return this.getRemainingBudget() / 12;
+        return (this.getRemainingBudget() / 12).toFixed(2);
     }
 }
 
