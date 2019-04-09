@@ -77,6 +77,7 @@
                         <hr>
 
                         <FdButton @click.stop="openAddExpense">Add Expense</FdButton>
+                        <FdButton @click="testApi()">Test API</FdButton>
                         <FdModal title="Add Expense" :active.sync="showAddExpense">
                             <p>Add an expense.</p>
                             <FdFormSet>
@@ -110,6 +111,7 @@ import Vue from "vue";
 
 import { Budget } from "./assets/Budget";
 import { Expense } from "./assets/Expense";
+import { API } from "./services/API";
 
 
 export default Vue.extend({
@@ -179,6 +181,10 @@ export default Vue.extend({
 
             this.closeAddExpense();
         },
+
+        testApi(): void {
+            alert(API.get("server.php"));
+        }
     }
 });
 </script>
