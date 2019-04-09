@@ -64,6 +64,14 @@ export class Budget {
     getTotalAll() {
         return this.getAnnualSum() + (this.getMonthlySum() * 12);
     }
+
+    getRemainingBudget() {
+        return 147000 - this.getTotalAll();
+    }
+
+    getRemainingMonthlyBudget() {
+        return this.getRemainingBudget() / 12;
+    }
 }
 
 export class Expense {

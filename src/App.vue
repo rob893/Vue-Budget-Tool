@@ -7,25 +7,13 @@
                     <FdShellBarProduct>
                         <FdShellBarProductMenu>
                             <template slot="title">Budget Tool</template>
-                            <template slot="menu">
-                                <FdMenuItem>Application A</FdMenuItem>
-                                <FdMenuItem>Application B</FdMenuItem>
-                            </template>
                         </FdShellBarProductMenu>
                     </FdShellBarProduct>
-                    <FdShellBarSubtitle>Subtitle</FdShellBarSubtitle>
                     </FdShellBarGroup>
                     <FdShellBarGroup position="end">
                     <FdShellBarActions>
                         <FdShellBarAction>
                         <FdShellBarUserMenu>
-                            <FdMenuItem>App Finder</FdMenuItem>
-                            <FdMenuItem>Settings</FdMenuItem>
-                            <FdMenuItem>App Settings</FdMenuItem>
-                            <FdMenuItem>Help</FdMenuItem>
-                            <FdMenuItem>Give Feedback</FdMenuItem>
-                            <FdMenuItem>About</FdMenuItem>
-                            <FdMenuItem>Sign out</FdMenuItem>
                         </FdShellBarUserMenu>
                         </FdShellBarAction>
                         <FdShellBarAction>
@@ -80,6 +68,10 @@
 
                         <br>
                         <h2>Total Yearly Expenses: ${{ budget.getTotalAll() }}</h2>
+                        <hr>
+                        <h2>Annual Income: $147000</h2>
+                        <h2>Remaining Budget: ${{ budget.getRemainingBudget() }}</h2>
+                        <h2>Remaining Budget Per Month: ${{ budget.getRemainingMonthlyBudget() }}</h2>
                         <br>
                         
                         <hr>
@@ -107,39 +99,6 @@
                             </template>
                         </FdModal>
                     </FdTabItem>
-
-                    <FdTabItem label="Demo" name="b" class="content">
-                        <FdPopover v-margin:large>
-                            <h1 v-margin:large slot="body">🚀 Hello Fundamental Vue 🚀</h1>
-                        </FdPopover>
-                        <FdIcon name="lead" size="l" />
-
-                        <FdButton @click.stop="showModal">Show Modal</FdButton>
-                        <FdModal title="Modal Title" :active.sync="isModalActive">
-                            <p>Do you want to invite your friends to join the party?</p>
-                            <template slot="actions">
-                                <FdButton @click="closeModal" styling="light">Cancel</FdButton>
-                                <FdButton @click="closeModal" styling="emphasized">Invite Friends</FdButton>
-                            </template>
-                        </FdModal>
-                        <FdTimePicker />
-
-                        <FdPopover v-margin:large title="Show Calendar">
-                            <FdCalendar slot="body" />
-                        </FdPopover>
-                        
-                        <FdSpinner/>
-
-                        <FdTable striped :headers="headers" :items="items">
-                            <template slot="row" slot-scope="{ item }">
-                            <FdTableRow>
-                                <FdTableCell>{{ item.firstName }}</FdTableCell>
-                                <FdTableCell>{{ item.lastName }}</FdTableCell>
-                                <FdTableCell>{{ item.building }}</FdTableCell>
-                            </FdTableRow>
-                            </template>
-                        </FdTable>
-                    </FdTabItem>
                 </FdTabs>
             </FdAppMain>
         </FdShell>
@@ -155,18 +114,6 @@ export default {
 
     data () {
         return {
-            isModalActive: false,
-            headers: [ 
-                { label: "First Name", sortable: true, sortBy: "firstName" },
-                { label: "Last Name", sortable: true, sortBy: "lastName" },
-                { label: "Building", sortable: true, sortBy: "building" }
-            ],
-            items: [
-                { rating: 1, firstName: "Chris", lastName: "Kienle", building: "WFD02" },
-                { rating: 2, firstName: "Andi", lastName: "Kienle", building: "WFD03" },
-                { rating: 3, firstName: "Sven", lastName: "Bacia", building: "WFD02" },
-                { rating: 4, firstName: "Artur", lastName: "Raess", building: "WFD02" }
-            ],
             budgetHeaders: [
                 { label: "Name", sortable: true, sortBy: "name"},
                 { label: "Expense", sortable: true, sortBy: "expense"},
@@ -185,14 +132,6 @@ export default {
     },
 
     methods: {
-        showModal() {
-            this.isModalActive = true;
-        },
-
-        closeModal() {
-            this.isModalActive = false;
-        },
-
         openAddExpense() {
             this.showAddExpense = true;
         },
