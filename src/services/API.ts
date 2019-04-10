@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.baseURL = "localhost";
+
 export class API {
     
     public static get(path: string, params?: any): Promise<any> {

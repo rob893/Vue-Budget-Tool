@@ -183,7 +183,9 @@ export default Vue.extend({
         },
 
         testApi(): void {
-            alert(API.get("server.php"));
+            API.get("http://localhost/TestApi/").then((value) => {
+                alert(value);
+            });
         }
     }
 });
