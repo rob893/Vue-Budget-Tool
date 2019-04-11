@@ -28,6 +28,11 @@
             "name": "401k Contributions",
             "expense": 10290
         }
+        ,
+        {
+            "name": "Employee Benefits",
+            "expense": 3650
+        }
     ],
 
     "Monthly": [
@@ -93,15 +98,15 @@
         },
         {
             "name": "Water Bill",
-            "expense": 60
+            "expense": 70
         },
         {
             "name": "Misc Amazon TV Channel",
             "expense": 8
         },
         {
-            "name": "Health Insurance",
-            "expense": 158
+            "name": "Gas",
+            "expense": 175
         },
         {
             "name": "Groceries",
