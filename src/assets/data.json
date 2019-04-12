@@ -27,11 +27,14 @@
         {
             "name": "401k Contributions",
             "expense": 10290
-        }
-        ,
+        },
         {
-            "name": "Employee Benefits",
+            "name": "Employee Benefits (Health, Vision, Dental, etc.)",
             "expense": 3650
+        },
+        {
+            "name": "Web Server Hosting and Domain",
+            "expense": 75
         }
     ],
 
@@ -90,7 +93,7 @@
         },
         {
             "name": "Gym Membership",
-            "expense": 21
+            "expense": 22
         },
         {
             "name": "Power Bill",

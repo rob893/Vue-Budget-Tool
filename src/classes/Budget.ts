@@ -1,4 +1,4 @@
-import jsonData from "./data.json";
+import jsonData from "../assets/data.json";
 import { Expense } from './Expense.js';
 
 
