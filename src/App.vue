@@ -127,12 +127,12 @@ export default Vue.extend({
             budget: new Budget(),
             activeTab: "a",
             showAddExpense: false,
-            selectType: null,
-            newName: null,
-            newCost: null,
-            nameState: null,
-            costState: null,
-            typeState: null,
+            selectType: "",
+            newName: "",
+            newCost: 0,
+            nameState: "",
+            costState: "",
+            typeState: "",
         };
     },
 
@@ -142,31 +142,31 @@ export default Vue.extend({
         },
 
         closeAddExpense(): void {
-            this.nameState = null;
-            this.costState = null;
-            this.typeState = null;
-            this.newCost = null;
-            this.newName = null;
-            this.selectType = null;
+            this.nameState = "";
+            this.costState = "";
+            this.typeState = "";
+            this.newCost = 0;
+            this.newName = "";
+            this.selectType = "";
             this.showAddExpense = false;
         },
 
         addExpense(): void {
-            this.nameState = null;
-            this.costState = null;
-            this.typeState = null;
+            this.nameState = "";
+            this.costState = "";
+            this.typeState = "";
 
-            if (this.newName === null) {
+            if (this.newName === "") {
                 this.nameState = "invalid";
                 return;
             }
 
-            if (this.newCost === null) {
+            if (this.newCost < 0) {
                 this.costState = "invalid";
                 return;
             }
 
-            if (this.selectType === null) {
+            if (this.selectType === "") {
                 this.typeState = "invalid";
                 return;
             }
@@ -183,9 +183,11 @@ export default Vue.extend({
         },
 
         testApi(): void {
-            API.get("http://localhost/TestApi/").then((value) => {
-                alert(value);
-            });
+            let data = API.get("./src/services/server.php").then(response => { response });
+            console.log(data);
+            // API.get("http://localhost/TestApi/").then((value) => {
+            //     alert(value);
+            // });
         }
     }
 });

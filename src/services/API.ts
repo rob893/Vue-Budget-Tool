@@ -1,12 +1,12 @@
-import axios from 'axios';
+import Axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 
-axios.defaults.baseURL = "localhost";
+Axios.defaults.baseURL = "";
 
 export class API {
     
-    public static get(path: string, params?: any): Promise<any> {
+    public static get(path: string, params?: AxiosRequestConfig): AxiosPromise {
         return new Promise((resolve, reject) => {
-            axios.get(path, { params: params }).then(res => {
+            Axios.get(path, params).then(res => {
                 resolve(res.data);
             }).catch(res => {
                 reject(res.response.data.message);
@@ -14,9 +14,9 @@ export class API {
         })
     }
 
-    public static post(path: string, params?: any): Promise<any> {
+    public static post(path: string, params?: AxiosRequestConfig): AxiosPromise {
         return new Promise((resolve, reject) => {
-            axios.post(path, params).then(res => {
+            Axios.post(path, params).then(res => {
                 resolve(res.data);
             }).catch(res => {
                 reject(res.response.data.message);
