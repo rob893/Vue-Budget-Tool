@@ -78,4 +78,8 @@ export class Budget {
     public getRemainingMonthlyBudget(): number {
         return Number((this.getRemainingBudget() / 12).toFixed(2));
     }
+
+    public getRemainingWeeklyBudget(): number {
+        return Number((this.getRemainingBudget() / 52).toFixed(2));
+    }
 }
