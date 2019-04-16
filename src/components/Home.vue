@@ -9,7 +9,7 @@
                         <FdTableRow @click="goToExpense(item.name)">
                             <FdTableCell>{{ item.name }}</FdTableCell>
                             <FdTableCell>${{ item.expense }}</FdTableCell>
-                            <FdTableCell><FdButton type="negative" state="normal" @click="budget.removeMonthlyExpense(item)">Delete</FdButton></FdTableCell>
+                            <FdTableCell><FdButton type="negative" state="normal" @click.stop="budget.removeMonthlyExpense(item)">Delete</FdButton></FdTableCell>
                         </FdTableRow>
                     </template>
                 </FdTable>
@@ -26,7 +26,7 @@
                         <FdTableRow @click="goToExpense(item.name)">
                             <FdTableCell>{{ item.name }}</FdTableCell>
                             <FdTableCell>${{ item.expense }}</FdTableCell>
-                            <FdTableCell><FdButton type="negative" state="normal" @click="budget.removeAnnualExpense(item)">Delete</FdButton></FdTableCell>
+                            <FdTableCell><FdButton type="negative" state="normal" @click.stop="budget.removeAnnualExpense(item)">Delete</FdButton></FdTableCell>
                         </FdTableRow>
                     </template>
                 </FdTable>
@@ -139,9 +139,9 @@ export default Vue.extend({
             }
 
             if (this.selectType === "Annual") {
-                this.budget.addAnnualExpense(new Expense(this.newName, this.newCost, ExpenseType.Annual));
+                this.budget.addAnnualExpense(new Expense(this.newName, Number(this.newCost), ExpenseType.Annual));
             } else {
-                this.budget.addMonthlyExpense(new Expense(this.newName, this.newCost, ExpenseType.Monthly));
+                this.budget.addMonthlyExpense(new Expense(this.newName, Number(this.newCost), ExpenseType.Monthly));
             }
 
             this.closeAddExpense();
