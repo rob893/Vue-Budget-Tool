@@ -1,18 +1,30 @@
 import jsonData from "../assets/data.json";
-import { Expense } from './Expense.js';
+import { Expense, ExpenseType } from './Expense';
 
 
 export class Budget {
 
+    private static instance: Budget;
+
     private data: any;
-    private monthlyExpenses: Expense[];
-    private annualExpenses: Expense[];
+    private monthlyExpenses: Expense[] = [];
+    private annualExpenses: Expense[] = [];
 
     
-    public constructor() {
+    private constructor() {
         this.data = jsonData;
-        this.monthlyExpenses = this.data.Monthly;
-        this.annualExpenses = this.data.Annual;
+
+        for(let i = 0, l = this.data.Monthly.length; i < l; i++) {
+            this.monthlyExpenses.push(new Expense(this.data.Monthly[i].name, this.data.Monthly[i].expense, ExpenseType.Monthly));
+        }
+
+        for(let i = 0, l = this.data.Annual.length; i < l; i++) {
+            this.annualExpenses.push(new Expense(this.data.Annual[i].name, this.data.Annual[i].expense, ExpenseType.Annual));
+        }
+    }
+
+    public static get Instance() {
+        return this.instance || (this.instance = new Budget());
     }
 
     public addAnnualExpense(expense: Expense): void {
@@ -37,6 +49,38 @@ export class Budget {
                 this.monthlyExpenses.splice(i, 1);
             }
         }
+    }
+
+    public getAnnualExpense(name: string): Expense | null {
+        for(let i = 0, l = this.annualExpenses.length; i < l; i++) {
+            if(this.annualExpenses[i].name === name) {
+                return this.annualExpenses[i];
+            }
+        }
+
+        return null;
+    }
+
+    public getMonthlyExpense(name: string): Expense | null {
+        for(let i = 0, l = this.monthlyExpenses.length; i < l; i++) {
+            if(this.monthlyExpenses[i].name === name) {
+                return this.monthlyExpenses[i];
+            }
+        }
+
+        return null;
+    }
+
+    public getExpense(name: string): Expense | null {
+        
+        if(this.getAnnualExpense(name) !== null) {
+            return this.getAnnualExpense(name);
+        }
+        else if(this.getMonthlyExpense(name) !== null) {
+            return this.getMonthlyExpense(name);
+        }
+        
+        return null;
     }
 
     public getAnnualExpenses(): Expense[] {

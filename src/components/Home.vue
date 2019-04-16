@@ -23,7 +23,7 @@
                 <h2>Annual Expenses</h2>
                 <FdTable striped :headers="budgetHeaders" :items="budget.getAnnualExpenses()">
                     <template slot="row" slot-scope="{ item }">
-                        <FdTableRow>
+                        <FdTableRow @click="goToExpense(item.name)">
                             <FdTableCell>{{ item.name }}</FdTableCell>
                             <FdTableCell>${{ item.expense }}</FdTableCell>
                             <FdTableCell><FdButton type="negative" state="normal" @click="budget.removeAnnualExpense(item)">Delete</FdButton></FdTableCell>
@@ -77,7 +77,7 @@
 import Vue from "vue";
 
 import { Budget } from "./../classes/Budget";
-import { Expense } from "./../classes/Expense";
+import { Expense, ExpenseType } from "./../classes/Expense";
 import { API } from "./../services/API";
 
 
@@ -91,7 +91,7 @@ export default Vue.extend({
                 { label: "Expense", sortable: true, sortBy: "expense"},
                 { label: "Delete"},
             ],
-            budget: new Budget(),
+            budget: Budget.Instance,
             activeTab: "a",
             showAddExpense: false,
             selectType: "",
@@ -138,12 +138,10 @@ export default Vue.extend({
                 return;
             }
 
-            const newExpense = new Expense(this.newName, Number(this.newCost));
-
             if (this.selectType === "Annual") {
-                this.budget.addAnnualExpense(newExpense);
+                this.budget.addAnnualExpense(new Expense(this.newName, this.newCost, ExpenseType.Annual));
             } else {
-                this.budget.addMonthlyExpense(newExpense);
+                this.budget.addMonthlyExpense(new Expense(this.newName, this.newCost, ExpenseType.Monthly));
             }
 
             this.closeAddExpense();
