@@ -1,13 +1,33 @@
 import Vue from "vue";
-import Vuex, { StoreOptions, Store } from "vuex";
+import Vuex from "vuex";
 import { RootState } from './types';
 
 Vue.use(Vuex);
 
-const storeOptions: StoreOptions<RootState> = {
+export const store = new Vuex.Store({
     state: {
         counter: 0
-    }
-};
+    },
 
-export const store: Store<RootState> = new Store<RootState>(storeOptions);
+    getters: {
+        doubleCounter: state => {
+            return state.counter * 2;
+        }
+    },
+
+    mutations: {
+        increment: state => {
+            state.counter++;
+        },
+
+        decrement: state => {
+            state.counter--;
+        }
+    },
+
+    actions: {
+        increment: context => {
+            context.commit('increment');
+        }
+    }
+});

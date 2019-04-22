@@ -48,6 +48,7 @@
 
             <FdButton @click.stop="openAddExpense">Add Expense</FdButton>
             <FdButton @click="testApi()">Test API</FdButton>
+            <p>{{ doubleCounter }}</p>
             <FdModal title="Add Expense" :active.sync="showAddExpense">
                 <p>Add an expense.</p>
                 <FdFormSet>
@@ -76,6 +77,7 @@
 <script lang='ts'>
 import Vue from "vue";
 
+import { mapGetters } from 'vuex';
 import { Budget } from "./../classes/Budget";
 import { Expense, ExpenseType } from "./../classes/Expense";
 import { API } from "./../services/API";
@@ -161,6 +163,12 @@ export default Vue.extend({
 
         test(): void {
         }
+    },
+
+    computed: {
+        ...mapGetters([
+            'doubleCounter'
+        ])
     }
 });
 </script>
