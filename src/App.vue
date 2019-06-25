@@ -9,7 +9,6 @@
                             <template slot="title">Budget Tool</template>
                             <template slot="menu">
                                 <FdMenuItem><router-link to="/">Home</router-link></FdMenuItem>
-                                <FdMenuItem><router-link to="/hello">Hello!</router-link></FdMenuItem>
                             </template>
                         </FdShellBarProductMenu>
                     </FdShellBarProduct>

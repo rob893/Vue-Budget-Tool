@@ -1,5 +1,5 @@
-import jsonData from "../assets/data.json";
 import { Expense, ExpenseType } from './Expense';
+import { API } from '@/services/API';
 
 
 export class Budget {
@@ -12,23 +12,53 @@ export class Budget {
 
     
     private constructor() {
-        this.data = jsonData;
+        API.get("https://rwherber.com/APIs/BudgetTool/index.php").then((data) => {
+            this.data = data;
 
-        for(let i = 0, l = this.data.Monthly.length; i < l; i++) {
-            this.monthlyExpenses.push(new Expense(this.data.Monthly[i].name, this.data.Monthly[i].expense, ExpenseType.Monthly));
-        }
-
-        for(let i = 0, l = this.data.Annual.length; i < l; i++) {
-            this.annualExpenses.push(new Expense(this.data.Annual[i].name, this.data.Annual[i].expense, ExpenseType.Annual));
-        }
+            for(let i = 0, l = this.data.Monthly.length; i < l; i++) {
+                this.monthlyExpenses.push(new Expense(this.data.Monthly[i].name, this.data.Monthly[i].expense, ExpenseType.Monthly));
+            }
+    
+            for(let i = 0, l = this.data.Annual.length; i < l; i++) {
+                this.annualExpenses.push(new Expense(this.data.Annual[i].name, this.data.Annual[i].expense, ExpenseType.Annual));
+            }
+        });
     }
 
     public static get Instance() {
         return this.instance || (this.instance = new Budget());
     }
 
+    public reloadAPIData(): void {
+        this.monthlyExpenses = [];
+        this.annualExpenses = [];
+        this.data = null;
+        
+        API.get("https://rwherber.com/APIs/BudgetTool/index.php").then((data) => {
+            this.data = data;
+
+            for(let i = 0, l = this.data.Monthly.length; i < l; i++) {
+                this.monthlyExpenses.push(new Expense(this.data.Monthly[i].name, this.data.Monthly[i].expense, ExpenseType.Monthly));
+            }
+    
+            for(let i = 0, l = this.data.Annual.length; i < l; i++) {
+                this.annualExpenses.push(new Expense(this.data.Annual[i].name, this.data.Annual[i].expense, ExpenseType.Annual));
+            }
+        });
+    }
+
     public addAnnualExpense(expense: Expense): void {
         this.annualExpenses.push(expense);
+
+        let data = {
+            Annual: {
+                name: expense.name,
+                expense: expense.expense
+
+            }
+        };
+
+        API.post('https://rwherber.com/APIs/BudgetTool/index.php', data);
     }
 
     public removeAnnualExpense(expense: Expense): void {
@@ -37,10 +67,27 @@ export class Budget {
                 this.annualExpenses.splice(i, 1);
             }
         }
+
+        let data = {
+            Delete: expense.name,
+            From: 'Annual'
+        };
+
+        API.post('https://rwherber.com/APIs/BudgetTool/index.php', data);
     }
 
     public addMonthlyExpense(expense: Expense): void {
         this.monthlyExpenses.push(expense);
+
+        let data = {
+            Monthly: {
+                name: expense.name,
+                expense: expense.expense
+
+            }
+        };
+
+        API.post('https://rwherber.com/APIs/BudgetTool/index.php', data);
     }
 
     public removeMonthlyExpense(expense: Expense): void {
@@ -49,6 +96,13 @@ export class Budget {
                 this.monthlyExpenses.splice(i, 1);
             }
         }
+
+        let data = {
+            Delete: expense.name,
+            From: 'Monthly'
+        };
+
+        API.post('https://rwherber.com/APIs/BudgetTool/index.php', data);
     }
 
     public getAnnualExpense(name: string): Expense | null {

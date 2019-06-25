@@ -14,7 +14,7 @@ export class API {
         })
     }
 
-    public static post(path: string, params?: AxiosRequestConfig): AxiosPromise {
+    public static post(path: string, params?: any): AxiosPromise {
         return new Promise((resolve, reject) => {
             Axios.post(path, params).then(res => {
                 resolve(res.data);

@@ -1,4 +1,4 @@
-# newts
+# Budget Tool
 
 ## Project setup
 ```

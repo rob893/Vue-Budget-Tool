@@ -47,8 +47,7 @@
             <hr>
 
             <FdButton @click.stop="openAddExpense">Add Expense</FdButton>
-            <FdButton @click="testApi()">Test API</FdButton>
-            <p>{{ doubleCounter }}</p>
+            <FdButton @click="resetAPIDataToDefault()">Set Default Budget</FdButton>
             <FdModal title="Add Expense" :active.sync="showAddExpense">
                 <p>Add an expense.</p>
                 <FdFormSet>
@@ -153,15 +152,11 @@ export default Vue.extend({
             this.$router.push({name: 'expense', params: { id: id } });
         },
 
-        testApi(): void {
-            let data = API.get("./src/services/server.php").then(response => { response });
-            console.log(data);
-            // API.get("http://localhost/TestApi/").then((value) => {
-            //     alert(value);
-            // });
-        },
-
-        test(): void {
+        resetAPIDataToDefault(): void {
+            API.post("https://rwherber.com/APIs/BudgetTool/index.php", {reset: true}).then((value) => {
+                this.budget.reloadAPIData();
+                alert("API data reset!");
+            });
         }
     },
 
