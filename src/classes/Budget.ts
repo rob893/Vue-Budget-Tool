@@ -170,7 +170,7 @@ export class Budget {
     }
 
     public getRemainingBudget(): number {
-        return 147000 - this.getTotalAll();
+        return 75000 - this.getTotalAll();
     }
 
     public getRemainingMonthlyBudget(): number {
