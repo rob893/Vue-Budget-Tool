@@ -74,15 +74,18 @@
 </template>
 
 <script lang='ts'>
-import Vue from "vue";
+import Vue, { VueConstructor } from "vue";
 
 import { mapGetters } from 'vuex';
 import { Budget } from "./../classes/Budget";
 import { Expense, ExpenseType } from "./../classes/Expense";
 import { API } from "./../services/API";
+import TestMixin from './TestMixin';
+import mixins, { VueClass } from 'vue-typed-mixins';
 
 
-export default Vue.extend({
+
+export default mixins(TestMixin, (Vue as VueConstructor<Vue & {$refs: {test: string;}}>)).extend({
     name: "app",
 
     data() {
@@ -107,6 +110,7 @@ export default Vue.extend({
     methods: {
         openAddExpense(): void {
             this.showAddExpense = true;
+            
         },
 
         closeAddExpense(): void {
@@ -117,6 +121,7 @@ export default Vue.extend({
             this.newName = "";
             this.selectType = "";
             this.showAddExpense = false;
+            this.$refs.test = 'butt';
         },
 
         addExpense(): void {
