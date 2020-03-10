@@ -38,7 +38,7 @@
             <br>
             <h2>Total Yearly Expenses: ${{ budget.getTotalAll() }}</h2>
             <hr>
-            <h2>Annual Income: $147000</h2>
+            <h2>Annual Income: ${{ budget.annualIncome }}</h2>
             <h2>Remaining Budget: ${{ budget.getRemainingBudget() }}</h2>
             <h2>Remaining Budget Per Month: ${{ budget.getRemainingMonthlyBudget() }}</h2>
             <h2>Remaining Budget Per Week: ${{ budget.getRemainingWeeklyBudget() }}</h2>

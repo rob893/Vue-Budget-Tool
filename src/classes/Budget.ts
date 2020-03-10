@@ -4,6 +4,8 @@ import { API } from '@/services/API';
 
 export class Budget {
 
+    public annualIncome: number = 0;
+
     private static instance: Budget;
 
     private data: any;
@@ -14,6 +16,8 @@ export class Budget {
     private constructor() {
         API.get("https://rwherber.com/APIs/BudgetTool/index.php").then((data) => {
             this.data = data;
+
+            this.annualIncome = this.data.AnnualIncome;
 
             for(let i = 0, l = this.data.Monthly.length; i < l; i++) {
                 this.monthlyExpenses.push(new Expense(this.data.Monthly[i].name, this.data.Monthly[i].expense, ExpenseType.Monthly));
@@ -170,7 +174,7 @@ export class Budget {
     }
 
     public getRemainingBudget(): number {
-        return 147000 - this.getTotalAll();
+        return this.annualIncome - this.getTotalAll();
     }
 
     public getRemainingMonthlyBudget(): number {
