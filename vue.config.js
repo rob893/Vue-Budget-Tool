@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/BudgetTool/'
-}
+  publicPath: "/budget-tool/",
+};
